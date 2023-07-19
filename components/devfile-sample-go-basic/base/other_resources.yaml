@@ -1,0 +1,23 @@
+apiVersion: primaza.io/v1alpha1
+kind: ServiceClaim
+metadata:
+  name: my-app-dummy-for-appns
+spec:
+  application:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        app: my-go
+  applicationClusterContext:
+    clusterEnvironmentName: worker
+    namespace: applications
+  serviceClassIdentity:
+  - name: type
+    value: dummy
+  - name: scope
+    value: claim-for-appns
+  serviceEndpointDefinitionKeys:
+  - url
+  - password
+---
